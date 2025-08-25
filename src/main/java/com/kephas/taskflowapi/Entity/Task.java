@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.util.List;
 import java.util.UUID;
 
 public class Task {
@@ -17,18 +18,32 @@ public class Task {
     @Column(nullable = true)
     private String description;
 
+    private String Title;
+
     private TaskStatus status = TaskStatus.PENDING;
 
-    private String tag;
+    private TaskPriority priority;
+
+
+    private List<String> tags;
 
 
     public Task() {
     }
 
-    public Task(String description, TaskStatus status, String tag) {
+    public Task(String title, String description, TaskPriority priority, List<String> tags) {
+        Title = title;
         this.description = description;
-        this.status = status;
-        this.tag = tag;
+        this.priority = priority;
+        this.tags = tags;
+    }
+
+    public String getTitle() {
+        return Title;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
     }
 
     public String getDescription() {
@@ -47,11 +62,19 @@ public class Task {
         this.status = status;
     }
 
-    public String getTag() {
-        return tag;
+    public TaskPriority getPriority() {
+        return priority;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setPriority(TaskPriority priority) {
+        this.priority = priority;
+    }
+
+    public List<String> getTag() {
+        return tags;
+    }
+
+    public void setTag(List<String> tag) {
+        this.tags = tag;
     }
 }
