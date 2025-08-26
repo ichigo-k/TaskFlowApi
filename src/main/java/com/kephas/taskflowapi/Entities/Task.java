@@ -1,13 +1,11 @@
-package com.kephas.taskflowapi.Entity;
+package com.kephas.taskflowapi.Entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.List;
 import java.util.UUID;
 
+@Entity
 public class Task {
 
     @Id
@@ -24,7 +22,7 @@ public class Task {
 
     private TaskPriority priority;
 
-
+    @ElementCollection
     private List<String> tags;
 
 
@@ -36,6 +34,15 @@ public class Task {
         this.description = description;
         this.priority = priority;
         this.tags = tags;
+    }
+
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -70,11 +77,11 @@ public class Task {
         this.priority = priority;
     }
 
-    public List<String> getTag() {
+    public List<String> getTags() {
         return tags;
     }
 
-    public void setTag(List<String> tag) {
+    public void setTags(List<String> tag) {
         this.tags = tag;
     }
 }
